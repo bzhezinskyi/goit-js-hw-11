@@ -1,15 +1,24 @@
 import fetchPhoto from './fetchPhoto';
+import Notiflix from 'notiflix';
 
 const refs = {
-  form: document.querySelector('form'),
-  input: document.querySelector('input'),
   gallery: document.querySelector('.gallery'),
   loadMore: document.querySelector('.load-more'),
 };
+let page = 2;
 
 export default function crieateNextGallery(query) {
-  fetchPhoto(query).then(arrey => {
-    crieateGallery(arrey.hits);
+  fetchPhoto(query, page).then(arrey => {
+    if (arrey.data.totalHits === refs.gallery.children.length) {
+      endGallery();
+    } else {
+    }
+    crieateGallery(arrey.data.hits);
+    Notiflix.Notify.info(
+      `Hooray! We found ${
+        arrey.data.totalHits - refs.gallery.children.length
+      } images.`
+    );
   });
 }
 
@@ -37,4 +46,12 @@ function crieateGallery(photos) {
   </div>
 </div>`;
   }
+  page += 1;
+}
+
+function endGallery() {
+  refs.loadMore.classList.add('visually-hidden');
+  Notiflix.Notify.info(
+    "We're sorry, but you've reached the end of search results."
+  );
 }

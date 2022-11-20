@@ -4,7 +4,6 @@ import crieateNextGallery from './js/crieateNextGallery';
 const refs = {
   form: document.querySelector('form'),
   input: document.querySelector('input'),
-  gallery: document.querySelector('.gallery'),
   loadMore: document.querySelector('.load-more'),
 };
 
@@ -13,7 +12,7 @@ refs.loadMore.addEventListener('click', newHandleSubmit);
 
 function handleSubmit(event) {
   event.preventDefault();
-  crieateNewGallery(refs.input.value, 2);
+  crieateNewGallery(refs.input.value);
 }
 
 function newHandleSubmit(event) {

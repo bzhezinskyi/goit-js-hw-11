@@ -26,7 +26,7 @@
     border-bottom-right-radius: 10px;
     &:hover,
     :focus {
-      background-color: aquamarine;
+      background-color: rgb(255, 186, 59);
     }
   }
 }
@@ -49,21 +49,40 @@
   justify-content: space-around;
 }
 .photo-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 5px;
-  border: 1px solid black;
+  border: 1px solid gray;
+  border-radius: 5px;
   padding: 5px;
-  width: calc((100% - 10px * 4) / 4);
+  width: calc(100% - 10px);
+
+  @media screen and (min-width: 585px) {
+    width: calc((100% - 10px * 2) / 2);
+  }
+  @media screen and (min-width: 870px) {
+    width: calc((100% - 10px * 3) / 3);
+  }
+  @media screen and (min-width: 1200px) {
+    width: calc((100% - 10px * 4) / 4);
+  }
+  &:hover,
+  :focus {
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%), 0px 4px 4px rgb(0 0 0 / 6%),
+      1px 4px 6px rgb(0 0 0 / 16%);
+  }
   & img {
-    width: 100%;
+    max-width: 100%;
   }
 }
 .info {
   display: flex;
+  justify-content: space-between;
   &-item {
-    & svg {
-      width: 20px;
-      height: 20px;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -72,5 +91,13 @@
   left: 50%;
   bottom: 0;
   transform: translate(-50%, 0);
-  margin-top: 10px;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgb(255, 166, 0);
+  border: 1px solid gray;
+  border-radius: 10px;
+  &:hover,
+  :focus {
+    background-color: rgb(255, 186, 59);
+  }
 }

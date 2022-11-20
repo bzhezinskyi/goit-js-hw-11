@@ -1,15 +1,25 @@
 import fetchPhoto from './fetchPhoto';
+import Notiflix from 'notiflix';
 
 const refs = {
-  form: document.querySelector('form'),
-  input: document.querySelector('input'),
   gallery: document.querySelector('.gallery'),
   loadMore: document.querySelector('.load-more'),
 };
 
-export default function crieateNewGallery(query, page) {
-  fetchPhoto(query, page).then(arrey => {
-    crieateGallery(arrey.hits);
+export default function crieateNewGallery(query) {
+  fetchPhoto(query).then(arrey => {
+    if (arrey.data.hits.length === 0) {
+      return Notiflix.Notify.failure(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
+    } else {
+      crieateGallery(arrey.data.hits);
+      Notiflix.Notify.info(
+        `Hooray! We found ${
+          arrey.data.totalHits - refs.gallery.children.length
+        } images.`
+      );
+    }
   });
 }
 

@@ -8,18 +8,20 @@ const refs = {
 let page = 2;
 
 export default function crieateNextGallery(query) {
-  fetchPhoto(query, page).then(arrey => {
-    if (arrey.data.totalHits === refs.gallery.children.length) {
-      endGallery();
-    } else {
-    }
-    crieateGallery(arrey.data.hits);
-    Notiflix.Notify.info(
-      `Hooray! We found ${
-        arrey.data.totalHits - refs.gallery.children.length
-      } images.`
-    );
-  });
+  fetchPhoto(query, page)
+    .then(arrey => {
+      if (arrey.data.totalHits === refs.gallery.children.length) {
+        endGallery();
+      } else {
+      }
+      crieateGallery(arrey.data.hits);
+      Notiflix.Notify.info(
+        `Hooray! We found ${
+          arrey.data.totalHits - refs.gallery.children.length
+        } images.`
+      );
+    })
+    .catch(error => console.log(Notiflix.Notify.failure(`${error.message}`)));
 }
 
 function crieateGallery(photos) {

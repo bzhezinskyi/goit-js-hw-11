@@ -1,3 +1,6 @@
+header {
+  height: 52px;
+}
 .container {
   position: fixed;
   top: 0;
@@ -43,7 +46,6 @@
 }
 
 .gallery {
-  margin-top: 52px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
